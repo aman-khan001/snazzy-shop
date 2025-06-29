@@ -28,7 +28,7 @@ const Navbar = () => {
               <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
               <button className="btn btn-outline-success" type="submit">Search</button>
             </form>
-            <button className="btn btn-outline-primary ms-2" type="button">Cart</button>
+            <Link to={'/cart'} className="btn btn-outline-primary ms-2" >Cart</Link>
           </div>
         </div>
       </nav>

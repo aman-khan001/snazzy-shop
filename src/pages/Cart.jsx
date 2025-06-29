@@ -1,26 +1,55 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { removeItem } from "../store/cartSlice";
 
 const Cart = () => {
+  const cartItems = useSelector((state) => state.cart.items);
+  const dispatch = useDispatch();
   return (
     <div>
       <h1 className="">Your Cart</h1>
-      
-      <button className="btn btn-primary">Proceed to Checkout</button>
-      <button className="btn btn-secondary ms-2">Continue Shopping</button>
-      <div className="mt-4">
-        <h2>Your Cart Items</h2>
-        <p>No items in the cart yet. Start shopping to add items!</p>
-        {/* Here you can map through cart items and display them */}
-
-        Example item structure:
-        <div className="cart-item">
-          <img src="product-image.jpg" alt="Product" className="img-fluid" />
-          <h3>Product Name</h3>
-          <p>Price: ₹1000</p>
-          <p>Quantity: 1</p>
-          <button className="btn btn-danger">Remove</button>
+      {cartItems.length === 0 ? (
+        <div className="alert alert-info" role="alert">
+          Your cart is empty! Start adding items to your cart.
         </div>
-      </div>
+      ) : (
+        <div className="table-responsive">
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cartItems.map((item) => (
+                <tr key={item.id}>
+                  <td>{item.title}</td>
+                  <td>₹{item.price}</td>
+                  <td>{item.quantity}</td>
+                  <td>₹{item.price * item.quantity}</td>
+                  <td>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => dispatch(removeItem(item.id))}
+                    >
+                      Remove
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          <h3>Total Amount: ₹{cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)}</h3>
+          <button className="btn btn-success">Checkout</button>
+        </div>
+      )  
+      }
+      
     </div>
   );
 };
