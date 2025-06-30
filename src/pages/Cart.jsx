@@ -1,13 +1,22 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { removeItem } from "../store/cartSlice";
+import { removeItem, increaseQuantity, decreaseQuantity } from "../store/cartSlice";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
   return (
     <div>
+      <div className="d-flex justify-content-between px-5">
       <h1 className="">Your Cart</h1>
+      <button
+        className="btn btn-primary ms-auto"
+        onClick={() => dispatch({ type: "cart/clearCart" })}    
+      >
+        Clear Cart
+      </button>
+      </div>
       {cartItems.length === 0 ? (
         <div className="alert alert-info" role="alert">
           Your cart is empty! Start adding items to your cart.
@@ -33,6 +42,29 @@ const Cart = () => {
                   <td>₹{item.price * item.quantity}</td>
                   <td>
                     <button
+                      className="btn btn-secondary me-2"
+                      onClick={() =>
+                        dispatch({
+                          type: "cart/increaseQuantity",
+                          payload: item.id,
+                        })
+                      }
+                    >
+                      +
+                    </button>
+                    <button
+                      className="btn btn-secondary me-2"
+                      onClick={() =>
+                        dispatch({
+                          type: "cart/decreaseQuantity",
+                          payload: item.id,
+                        })
+                      }
+                    >
+                      -
+                    </button>
+
+                    <button
                       className="btn btn-danger"
                       onClick={() => dispatch(removeItem(item.id))}
                     >
@@ -44,12 +76,16 @@ const Cart = () => {
             </tbody>
           </table>
 
-          <h3>Total Amount: ₹{cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)}</h3>
-          <button className="btn btn-success">Checkout</button>
+          <h3>
+            Total Amount: ₹
+            {cartItems.reduce(
+              (acc, item) => acc + item.price * item.quantity,
+              0
+            )}
+          </h3>
+          <Link to={'/checkout'} className="btn btn-success">Checkout</Link>
         </div>
-      )  
-      }
-      
+      )}
     </div>
   );
 };

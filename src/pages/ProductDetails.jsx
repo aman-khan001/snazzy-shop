@@ -1,11 +1,25 @@
 import { useParams } from "react-router-dom"
-import products from "../data/products";
 import { useDispatch } from "react-redux";
 import { addItem } from "../store/cartSlice";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const product = products.find((p) => p.id === parseInt(id));
+  const [product, setProducts] = useState([]);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get('https://fakestoreapi.com/products/' + id);
+        setProducts(response.data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, [])
+
   if (!product) {
     return <h2>Product not found!</h2>;
   }
