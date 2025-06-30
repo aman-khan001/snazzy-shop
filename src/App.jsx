@@ -9,6 +9,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Checkout from './pages/Checkout';
 import OrderSuccess from './pages/OrderSuccess';
 import ContactUs from './pages/ContactUs';
+import Footer from './components/Footer';
 
 
 const App = () => {
@@ -20,7 +21,6 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/products" element={<ProductDetails />} />
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/cart" element={
           <ProtectedRoute>
@@ -42,6 +42,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   )
 }

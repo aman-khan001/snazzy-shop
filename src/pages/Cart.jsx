@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { removeItem, increaseQuantity, decreaseQuantity } from "../store/cartSlice";
+import {
+  removeItem,
+  increaseQuantity,
+  decreaseQuantity,
+} from "../store/cartSlice";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
@@ -9,13 +13,13 @@ const Cart = () => {
   return (
     <div>
       <div className="d-flex justify-content-between px-5">
-      <h1 className="">Your Cart</h1>
-      <button
-        className="btn btn-primary ms-auto"
-        onClick={() => dispatch({ type: "cart/clearCart" })}    
-      >
-        Clear Cart
-      </button>
+        <h1 className="">Your Cart</h1>
+        <button
+          className="btn btn-primary ms-auto"
+          onClick={() => dispatch({ type: "cart/clearCart" })}
+        >
+          Clear Cart
+        </button>
       </div>
       {cartItems.length === 0 ? (
         <div className="alert alert-info" role="alert">
@@ -37,9 +41,9 @@ const Cart = () => {
               {cartItems.map((item) => (
                 <tr key={item.id}>
                   <td>{item.title}</td>
-                  <td>₹{item.price}</td>
+                  <td>${item.price}</td>
                   <td>{item.quantity}</td>
-                  <td>₹{item.price * item.quantity}</td>
+                  <td>${item.price * item.quantity}</td>
                   <td>
                     <button
                       className="btn btn-secondary me-2"
@@ -77,13 +81,15 @@ const Cart = () => {
           </table>
 
           <h3>
-            Total Amount: ₹
+            Total Amount: $
             {cartItems.reduce(
               (acc, item) => acc + item.price * item.quantity,
               0
             )}
           </h3>
-          <Link to={'/checkout'} className="btn btn-success">Checkout</Link>
+          <Link to={"/checkout"} className="btn btn-success">
+            Checkout
+          </Link>
         </div>
       )}
     </div>
