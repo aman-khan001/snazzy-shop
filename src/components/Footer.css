@@ -1,0 +1,114 @@
+.footer {
+  background-color: #eee;
+  color: black;
+  padding: 20px;
+  text-align: center;
+  margin-top: 10vh;
+}
+.footer a {
+  color: #004ddd;
+  text-decoration: none;
+}
+.footer a:hover {
+  text-decoration: underline;
+}
+.footer p {
+  margin: 10px 0;
+}
+.footer .social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+.footer .social-icons a {
+  font-size: 24px;
+  color: #004ddd;
+  transition: color 0.3s ease;
+}
+.footer .social-icons a:hover {
+  color: #21a1f1;
+}
+.footer .social-icons i {
+  margin: 0 10px;
+}
+.footer .contact-primary {
+  margin-top: 20px;
+}
+.footer .contact-primary p {
+  margin: 5px 0;
+}
+.footer .contact-primary a {
+  color: #61dafb;
+  text-decoration: none;
+}
+.footer .contact-primary a:hover {
+  text-decoration: underline;
+}
+.footer .newsletter {
+  margin-top: 20px;
+}
+.footer .newsletter input[type="email"] {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  width: 250px;
+}
+.footer .newsletter button {
+  padding: 10px 15px;
+  background-color: #61dafb;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+.footer .newsletter button:hover {
+  background-color: #21a1f1;
+}
+.footer .newsletter form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.footer .newsletter form input[type="email"] {
+  flex: 1;
+}
+.footer .newsletter form button {
+  flex-shrink: 0;
+}
+.footer .newsletter form input[type="email"]:focus {
+  outline: none;
+  border: 2px solid #61dafb;
+}
+.footer .newsletter form button:focus {
+  outline: none;
+  box-shadow: 0 0 5px #61dafb;
+}
+.footer .newsletter form input[type="email"]::placeholder {
+  color: #61dafb;
+}
+.footer .newsletter form button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+.footer .newsletter form button:disabled:hover {
+  background-color: #ccc;
+}
+.footer .newsletter form input[type="email"]:disabled {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+
+.footer .newsletter form input[type="email"]:disabled::placeholder {
+  color: #999;
+}
+.footer .newsletter form button:disabled::before {
+  content: "Please wait...";
+  color: #999;
+  font-size: 14px;
+}
+.footer .newsletter form button:disabled::after {
+  content: "Submitting...";
+  color: #999;
+  font-size: 14px;
+}
