@@ -52,6 +52,7 @@ const Navbar = () => {
               </>
             )}
             <Link to={'/cart'} className="btn btn-outline-primary ms-2">Cart</Link>
+            <Link to={'/wishlist'} className="btn btn-outline-dark ms-2">♡</Link>
           </div>
         </div>
       </nav>

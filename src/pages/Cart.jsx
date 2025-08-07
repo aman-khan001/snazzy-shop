@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  removeItem,
-  increaseQuantity,
-  decreaseQuantity,
+  removeItem
 } from "../store/cartSlice";
 
 const Cart = () => {
@@ -94,7 +92,7 @@ const Cart = () => {
               0
             )}
           </h3>
-          <Link to={"/checkout"} className="btn btn-success">
+          <Link to={"/order-summary"} className="btn btn-success">
             Checkout
           </Link>
         </div>

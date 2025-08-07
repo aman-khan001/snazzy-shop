@@ -33,7 +33,7 @@ const MensShirts = () => {
                     />
                   </div>
                   <div className="card-body d-flex flex-column">
-                    <h5 className="card-title">{product.title.slice(0, 20)}</h5>
+                    <h5 className="card-title">{product.title.length >= 20 ? product.title.slice(0, 20) + "..." : product.title}</h5>
                     {/* <p className="card-text text-muted">
                       {product.description.slice(0, 100)}...
                     </p> */}

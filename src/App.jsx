@@ -11,6 +11,10 @@ import OrderSuccess from './pages/OrderSuccess';
 import ContactUs from './pages/ContactUs';
 import Footer from './components/Footer';
 import Products from './pages/Products';
+import './App.css'
+import Wishlist from './pages/Wishlist';
+import OrderSummary from './pages/OrderSummary';
+
 
 
 const App = () => {
@@ -31,6 +35,11 @@ const App = () => {
             <Cart />
           </ProtectedRoute>
         } />
+        <Route path='/wishlist' element={
+          <ProtectedRoute>
+            <Wishlist />
+          </ProtectedRoute>
+        } ></Route>
         <Route path="/checkout" element={
           <ProtectedRoute>
             <Checkout />
@@ -41,6 +50,7 @@ const App = () => {
             <OrderSuccess />
           </ProtectedRoute>
         } />
+        <Route path='/order-summary' element={<OrderSummary />} />
         <Route path="/contact" element={<ContactUs />} />
 
         <Route path="*" element={<h1 className='text-center py-5 my-5'>404 Not Found</h1>} />

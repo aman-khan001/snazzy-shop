@@ -1,29 +1,47 @@
-import React from 'react'
-import { useState } from 'react'
-import { signInWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../firebase'
-import { useNavigate } from 'react-router-dom'
+import React from "react";
+import { useState } from "react";
+import {
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+import { auth } from "../firebase";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const navigate = useNavigate()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
   const handleLogin = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, email, password)
-      navigate('/')
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate("/");
     } catch (error) {
-      console.error("Login failed:", error.message)
+      alert("Login failed: ", error.message);
     }
-  }
+  };
+
+  const provider = new GoogleAuthProvider();
+
+  const handleGoogleLogin = async () => {
+    try {
+      signInWithPopup(auth, provider);
+      navigate("/");
+    } catch (error) {
+      alert("Google Login Failed: " + error.message);
+    }
+  };
+
   return (
     <div>
-      <div className="container mt-5" style={{height:"80vh"}}>
+      <div className="container mt-5" style={{ height: "80vh" }}>
         <h2>Login</h2>
         <form onSubmit={handleLogin}>
           <div className="mb-3">
-            <label htmlFor="email" className="form-label">Email address</label>
+            <label htmlFor="email" className="form-label">
+              Email address
+            </label>
             <input
               type="email"
               className="form-control"
@@ -34,7 +52,9 @@ const Login = () => {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="password" className="form-label">Password</label>
+            <label htmlFor="password" className="form-label">
+              Password
+            </label>
             <input
               type="password"
               className="form-control"
@@ -44,11 +64,18 @@ const Login = () => {
               required
             />
           </div>
-          <button type="submit" className="btn btn-primary">Login</button>
+          <div className="d-flex gap-3">
+            <button type="submit" className="btn btn-primary">
+              Login
+            </button>
+            <button onClick={handleGoogleLogin} className="btn btn-dark ">
+              Sign in With Google
+            </button>
+          </div>
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

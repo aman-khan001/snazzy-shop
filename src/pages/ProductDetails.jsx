@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../store/cartSlice";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Popup from "../components/Popup";
+import { toggleWishList } from "../store/wishListSlice";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -38,6 +39,8 @@ const ProductDetails = () => {
   }
 
   const dispatch = useDispatch();
+  const wishlist = useSelector(state => state.wishlist.wishlist)
+  const isWished = wishlist.some(p => p.id === product.id)
 
   return (
     <div className="w-75 mx-auto my-5">
@@ -56,6 +59,9 @@ const ProductDetails = () => {
         className="btn btn-primary"
       >
         Add to Cart 
+      </button> 
+      <button onClick={() => dispatch(toggleWishList(product))} className="btn ms-3 btn-dark border-0 bg-transparent fs-3">
+        {isWished ? "❤️" : "♡"}
       </button>
         <div className="mt-4">
           <h3>Customer Reviews</h3>
